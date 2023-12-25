@@ -5,7 +5,7 @@
 int IsPalindrome(char x[])
 {
     int l = 0;
-    int r = strlen(x)-1; 
+    int r = strlen(x)-1; //123
 
     while (l<r)
     {
