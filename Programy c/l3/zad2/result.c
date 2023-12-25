@@ -4,6 +4,7 @@
 double result(double a, double b, double eps)
 {
     //a -  rng low (<0) // b - rng high (>0) // eps - precision // returns range < eps
+    
     double rnga = min(a,b);
     double rngb = max(a,b);
     double range = (b-a);

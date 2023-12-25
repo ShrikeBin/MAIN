@@ -7,6 +7,7 @@ main: $(OBJECTS)
 	$(CC) $^ -o $@ -lm
 	chmod +x ./main
 
+
 $(OBJ)/%.o: ./%.c
 	mkdir obj -p
 	$(CC) -c $^ -o $@

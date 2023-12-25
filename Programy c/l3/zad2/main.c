@@ -2,6 +2,7 @@
 
 int main()
 {
+    
     double a,b,eps;
     printf("Enter range start: ");
     scanf("%f", &a);
