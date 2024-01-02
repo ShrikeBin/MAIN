@@ -1,1 +1,3 @@
-int IsPalindrome(char x[]);
+#pragma once
+#include <stdbool.h>
+bool IsPalindrome(char x[]);

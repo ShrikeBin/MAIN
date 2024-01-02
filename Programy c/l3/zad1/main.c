@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
+
 #include "ispalindrome.h"
 
 int main()
@@ -12,7 +14,7 @@ int main()
     char y[x];
 
     printf("Check IsPalindrome: ");
-    scanf("%s",&y);
+    scanf("%s",y);
 
     printf("Anwser is: %d", IsPalindrome(y));
     printf("\n");

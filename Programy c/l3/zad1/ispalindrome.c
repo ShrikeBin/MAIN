@@ -1,20 +1,21 @@
 #include <string.h>
+#include <stdbool.h>
 
 #include "ispalindrome.h"
 
-int IsPalindrome(char x[])
+bool IsPalindrome(char x[])
 {
     int l = 0;
-    int r = strlen(x)-1; //123
+    int r = strlen(x)-1; 
 
     while (l<r)
     {
         if (x[l] != x[r])
         {
-            return 0;
+            return false;
         }
         l++;
         r--;
     }
-    return 1;
+    return true;
 }
