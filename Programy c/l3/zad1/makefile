@@ -1,12 +1,10 @@
-OBJ := obj
+all: main
 
-SOURCES := $(wildcard ./*.c)
-OBJECTS := $(patsubst ./%.c, $(OBJ)/%.o, $(SOURCES))
+main: main.o ispalindrome.o
+	gcc -o main main.o ispalindrome.o
 
-main: $(OBJECTS)
-	$(CC) $^ -o $@ -lm
-	chmod +x ./main
+main.o: main.c
+	gcc main.c
 
-$(OBJ)/%.o: ./%.c
-	mkdir obj -p
-	$(CC) -c $^ -o $@
+ispalindrome.o: ispalindrome.c
+	gcc ispalindrome.c
