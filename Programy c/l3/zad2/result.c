@@ -21,6 +21,7 @@ double result(double a, double b, double eps)
     if (fun(rngBEGIN) * fun(rngEND) > 0) 
     {
         printf("Does not equal to 0 in the interval\n");
+        return NAN;
     }
 
     while (range >= eps)
