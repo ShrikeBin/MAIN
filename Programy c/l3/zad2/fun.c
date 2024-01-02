@@ -1,8 +1,8 @@
 #include <math.h>
 #include "functions.h"
 
-double fun(double x)
+double fund(double x)
 {
-    double y = cos(x/2);
+    double y = cos(x/2.0);
     return y;
 }

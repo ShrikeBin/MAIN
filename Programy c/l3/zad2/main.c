@@ -1,15 +1,18 @@
 #include "functions.h"
-
+#include <stdio.h>
 int main()
 {
-    
     double a,b,eps;
+
     printf("Enter range start: ");
-    scanf("%f", &a);
+    scanf("%lf", &a);
+
     printf("Enter range end: ");
-    scanf("%f", &b);
+    scanf("%lf", &b);
+
     printf("Enter precision: ");
-    scanf("%f", &eps);
-    printf("\nResult: ", result(a,b,eps));
+    scanf("%lf", &eps);
+
+    printf("Result: %lf\n", result(a,b,eps));
 
 }

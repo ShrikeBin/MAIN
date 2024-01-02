@@ -1,32 +1,48 @@
 #include <math.h>
+#include <stdio.h>
 #include "functions.h"
+
+double fun(double x)
+{
+    double y = cos(x/2.0);
+    return y;
+}
 
 double result(double a, double b, double eps)
 {
     //a -  rng low (<0) // b - rng high (>0) // eps - precision // returns range < eps
     
-    double rnga = min(a,b);
-    double rngb = max(a,b);
-    double range = (b-a);
-    double point;
+    double rngBEGIN = fmin(a,b);
+    double rngEND = fmax(a,b);
+    double range = (rngEND - rngBEGIN);
+    double point = ((rngEND + rngBEGIN)/2);
+
+
+    if (fun(rngBEGIN) * fun(rngEND) > 0) 
+    {
+        printf("Does not equal to 0 in the interval\n");
+    }
 
     while (range >= eps)
     {
-        point = fun((rngb - rnga)/2);
-        if (point = 0)
+
+        point = ((rngEND + rngBEGIN)/2);
+
+        if (fun(point) == 0)
         {
             return point;
         }
-        else if (point < 0)
+        else if (fun(point)*fun(rngEND) < 0)
         {
-            rngb = point;
+            rngBEGIN = point;
         }
-        else if (point > 0)
+        else if (fun(point)*fun(rngBEGIN) < 0)
         {
-            rnga = point;
+            rngEND = point;
         }
-        range = max(rngb,rnga) - min(rngb,rnga);
+        range = fmax(rngEND,rngBEGIN) - fmin(rngEND,rngBEGIN);
+
     }
 
-return rnga,rngb;
+return point;
 }
