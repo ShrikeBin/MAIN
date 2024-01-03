@@ -2,17 +2,17 @@
 #include <math.h>
 #include <stdbool.h>
 
-bool check(int example, int red, int white, int try) // czy taki try moze być jesli na example odpowiedz była red i white
+bool check(char example, int red, int white, char try) // czy taki try moze być jesli na example odpowiedz była red i white
 {
 }
 
 int main()
 {
     bool codes[6][6][6][6];
-    short example[4];
+    char guess[5] = "1111";
+    char try[5];
     short red = 0;
     short white = 0;
-    short try[4];
 
     while (red != 4)
     {
@@ -53,7 +53,7 @@ int main()
                         }
                         else
                         {
-                            codes[a][b][c][d] = check(example, red, white, try); // sprawdź które mogą po tamtych guessach
+                            codes[a][b][c][d] = check(guess, red, white, try); // sprawdź które mogą po tamtych guessach
                         }
                     }
                 }
