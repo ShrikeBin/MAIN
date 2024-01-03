@@ -1,14 +1,14 @@
 #include <stdio.h>
-#include <stdbool.h> //'?' - dowolny znak 1
-#include <string.h>  //'*' - ciąg znaków
+#include <stdbool.h>
+#include <string.h> 
 
-bool match(char *pattern, char *chain) // *b*a || babababababababababab
+bool match(char *pattern, char *chain)
 {
     if (pattern[0] == '\0' && chain[0] == '\0')
     {
         return true;
     }
-    else if ((pattern[0] != chain[0]) && (pattern[0] != '?') && (pattern[0] != '*'))
+    else if (((pattern[0] != chain[0]) && (pattern[0] != '?') && (pattern[0] != '*')) || ((pattern[0] == '?') && (chain[0] == '\0')))
     {
         return false;
     }
@@ -18,16 +18,14 @@ bool match(char *pattern, char *chain) // *b*a || babababababababababab
     }
     else if (pattern[0] == '*')
     {
-        while((pattern[1])!=(chain[0]))
+        if (pattern[1] == '\0')
         {
-            if (pattern[1] = '\0')
-            {
-                return true;
-            }
-            pattern++;
-            chain++;
+            return true;
         }
-        return match(pattern + 1, chain + 1);
+        else if (chain[0] != '\0')
+            return (match(pattern + 1, chain) || match(pattern, chain + 1));  //nie pamiętam czemu to działało xd
+        else
+            return match(pattern + 1, chain);
     }
 }
 
