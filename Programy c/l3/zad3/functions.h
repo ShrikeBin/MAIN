@@ -1,5 +1,5 @@
 #include <stdbool.h>
 #include <math.h>
 
-bool IsPrime(long int n);
+bool IsCoPrime(long int n, long int k);
 long int phi(long int n);

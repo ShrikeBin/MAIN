@@ -1,28 +1,24 @@
 #include <stdbool.h>
 #include "functions.h"
 
-bool IsPrime(long int n)
+bool IsCoPrime(long int n, long int k) // czy k względnie z n (assert n>k)
 {
-    if (n == 1)
+
+    if ((n == 1)||(n % k == 0))  // graniczny 
     {
         return false;
     }
 
-    int y = sqrt(n);
+    int y = sqrt(k);
     int sum = 0;
 
     for (long int i = 2; i < y + 1; i++)
     {
-        if ((n % i) == 0)
+        if (((n % i) == 0) && ((k % i) == 0))
         {
-            sum = sum + i + (n / i);
+            return false;
         }
     }
 
-    if (sum != 0)
-    {
-        return false;
-    }
-    else
-        return true;
+    return true;
 }
