@@ -2,9 +2,7 @@
 #include <math.h>
 #include <stdbool.h>
 
-bool check(char example, int red, int white, char try) // czy taki try moze być jesli na example odpowiedz była red i white
-{
-}
+
 
 int main()
 {
