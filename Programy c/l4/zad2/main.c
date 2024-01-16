@@ -1,62 +1,50 @@
 #include <stdio.h>
-#include <math.h>
 #include <stdbool.h>
 
-
-
-int main()
+int grade(char *pattern, char *try) // zwraca red/white w formie liczby r*1+w (rw w dziesietnym)
 {
-    bool codes[6][6][6][6];
-    char guess[5] = "1111";
-    char try[5];
-    short red = 0;
-    short white = 0;
+    int output = 0;
+    char pattern_alt[5];
+    char try_alt[5];
 
-    while (red != 4)
+    for (int i = 0; i < 4; i++)
     {
-        for (int a; a < 6; a++)
+        pattern_alt[i] = pattern[i];
+        try_alt[i] = try[i];
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        if (pattern[i] == try[i])
         {
-            for (int b; b < 6; b++)
-            {
-                for (int c; c < 6; c++)
-                {
-                    for (int d; d < 6; d++)
-                    {
-                        if (!codes[a][b][c][d])
-                        {
-                            printf("%d%d%d%d?\n", a, b, c, d); // wypisz kod który może byc
-                            break;
-                        }
-                    }
-                }
-            }
+            output += 10;
+            pattern_alt[i] = '0';
+            try_alt[i] = '0';
         }
+    }
 
-        printf("Red: ");
-        scanf("%d", red);
-        printf("White: ");
-        scanf("%d", white);
-
-        for (int a; a < 6; a++)
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
         {
-            for (int b; b < 6; b++)
+            if (((pattern_alt[i]) == (try_alt[j])) && (pattern_alt[i] != '0') && (try_alt[i] != '0'))
             {
-                for (int c; c < 6; c++)
-                {
-                    for (int d; d < 6; d++)
-                    {
-                        if (codes[a][b][c][d])
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            codes[a][b][c][d] = check(guess, red, white, try); // sprawdź które mogą po tamtych guessach
-                        }
-                    }
-                }
+                output += 1;
             }
         }
     }
-    printf("I win!\n");
+
+    return output;
+}
+
+bool compare(char *pattern, char *try, char *check)// nasz kod, nasza aktualna proba, podstawiane kolejne proby - po prostu sprawdza czy ?
+{
+    if(grade(pattern, try)==grade(pattern, check))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
