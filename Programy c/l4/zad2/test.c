@@ -2,26 +2,38 @@
 #include <math.h>
 #include <stdbool.h>
 
-int grade(char *pattern, char *try) // czy taki try moze być jesli na example odpowiedz była red i white
+int grade(char *pattern, char *try) // zwraca red/white w formie liczby r*1+w (rw w dziesietnym)
 {
     int output = 0;
-    char point[5];
+    char pattern_alt[5];
+    char try_alt[5];
+
+    for (int i = 0; i < 4; i++)
+    {
+        pattern_alt[i] = pattern[i];
+        try_alt[i] = try[i];
+    }
+
     for (int i = 0; i < 4; i++)
     {
         if (pattern[i] == try[i])
         {
             output += 10;
-            point[i] = "r";
-        }
-    }
-        for (int i = 0; i < 4; i++)
-    {
-        if (point[i] != "r")
-        {
-            //jak tu te white'y sprawdzać
+            pattern_alt[i] = '0';
+            try_alt[i] = '0';
         }
     }
 
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (((pattern_alt[i]) == (try_alt[j])) && (pattern_alt[i] != '0') && (try_alt[i] != '0'))
+            {
+                output += 1;
+            }
+        }
+    }
 
     return output;
 }
