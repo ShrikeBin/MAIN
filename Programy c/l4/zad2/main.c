@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-int grade(char *pattern, char *try) // zwraca red/white w formie liczby r*1+w (rw w dziesietnym)
+short grade(char *pattern, char *try) // zwraca red/white w formie liczby r*1+w (rw w dziesietnym)
 {
-    int output = 0;
+    short output = 0;
     char pattern_alt[5];
     char try_alt[5];
 
@@ -37,9 +37,9 @@ int grade(char *pattern, char *try) // zwraca red/white w formie liczby r*1+w (r
     return output;
 }
 
-bool compare(char *pattern, char *try, char *check)// nasz kod, nasza aktualna proba, podstawiane kolejne proby - po prostu sprawdza czy ?
+bool compare(char *pattern, char *try, char *check) // nasz kod, nasza aktualna proba, podstawiane kolejne proby - po prostu sprawdza czy ?
 {
-    if(grade(pattern, try)==grade(pattern, check))
+    if (grade(pattern, try) == grade(pattern, check))
     {
         return true;
     }
@@ -47,4 +47,37 @@ bool compare(char *pattern, char *try, char *check)// nasz kod, nasza aktualna p
     {
         return false;
     }
+}
+
+void main()
+{
+    char codes[1296][4];
+    char digits[6][1] = {'1', '2', '3', '4', '5', '6'};
+    int fill = 0;
+
+    for (int a1 = 0; a1 < 6; a1++) // wypelnij tabilce kodami
+    {
+        for (int a2 = 0; a2 < 6; a2++)
+        {
+            for (int a3 = 0; a3 < 6; a3++)
+            {
+                for (int a4 = 0; a4 < 6; a4++)
+                {
+                    codes[fill][0] = digits[a1][0];
+                    codes[fill][1] = digits[a2][0];
+                    codes[fill][2] = digits[a3][0];
+                    codes[fill][3] = digits[a4][0];
+                    fill++;
+                }
+            }
+        }
+    }
+
+    bool codes_check[1296] = {true};
+
+    while (/* kiedy sie skonczy*/)
+    {
+        
+    }
+    
 }
