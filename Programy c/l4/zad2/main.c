@@ -37,21 +37,9 @@ short grade(char *pattern, char *try) // zwraca red/white w formie liczby r*1+w 
     return output;
 }
 
-bool compare(char *pattern, char *try, char *check) // nasz kod, nasza aktualna proba, podstawiane kolejne proby - po prostu sprawdza czy ?
-{
-    if (grade(pattern, try) == grade(pattern, check))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
 void main()
 {
-    char codes[1296][4];
+    char codes[1296][5];
     char digits[6][1] = {'1', '2', '3', '4', '5', '6'};
     int fill = 0;
 
@@ -67,17 +55,52 @@ void main()
                     codes[fill][1] = digits[a2][0];
                     codes[fill][2] = digits[a3][0];
                     codes[fill][3] = digits[a4][0];
+                    codes[fill][4] = '\0';
                     fill++;
                 }
             }
         }
     }
 
+    int player;
     bool codes_check[1296] = {true};
+    bool exit = false;
 
-    while (/* kiedy sie skonczy*/)
+    while (!exit)
     {
-        
+        for (int i = 0; i < 1296; i++)
+        {
+            if (codes_check[i])
+            {
+                while (true)
+                {
+                    printf("Try: %s red/white ", codes[i]);
+                    scanf("\n%d", &player);
+                    if(((player/10)+(player%10))<=4)
+                    {
+                        for (int j = 0; j < 1296; j++)
+                        {
+                            if (grade(codes[i], codes[j]) != player) // czemu nie wychodzi z for'a xd dla j>=1095 nie działa jakoś xddxdd wtf;
+                            {
+                                codes_check[j] = false;
+                            }
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        printf("Incorrect red/white \n");
+                        continue;
+                    }
+                }
+                if (player == 40)
+                {
+                    exit = true;
+                    break;
+                }
+            }
+
+        }
     }
-    
+    printf("I won!\n");
 }
