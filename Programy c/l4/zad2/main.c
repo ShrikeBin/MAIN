@@ -102,11 +102,6 @@ int main()
                         }
                         break;
                     }
-                    else if(poss<1)
-                    {
-                        printf("You're cheating. \n");
-                        continue; 
-                    }
                     else
                     {
                         printf("Incorrect red/white \n");
@@ -121,7 +116,7 @@ int main()
             }
             else if (poss <1)
             {
-                printf("You are cheating, there's no code that would fit these requierments \n");
+                printf("You are cheating, there's no code that would fit these requierments. \n");
                 exit = true;
                 break;
             }
