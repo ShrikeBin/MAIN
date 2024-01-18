@@ -71,6 +71,7 @@ int main()
         codes_check[i] = true;
     }
     bool exit = false;
+    int poss = 1296;
 
     while (!exit)
     {
@@ -80,23 +81,31 @@ int main()
             {
                 while (true)
                 {
-                    printf("Try: %s red/white ", codes[i]);
+                    printf("There's %d possible codes left\n", poss);
+                    printf("Try: %s  red/white ", codes[i]);
                     scanf("\n%d", &player);
-                    if (((player / 10) + (player % 10)) <= 4)
+                    if ((((player / 10) + (player % 10)) <= 4)&&(player<=40))
                     {
+                        poss = 0;
                         for (int j = 0; j < 1296; j++)
                         {
-                            if ((codes_check[j])&&(grade(codes[i], codes[j]) != player))
+                            if ((codes_check[j]) && (grade(codes[i], codes[j]) != player))
                             {
                                 codes_check[j] = false;
                             }
 
-                            if(codes_check[j])
+                            if (codes_check[j])
                             {
-                                printf("%d %s,", codes_check[j], codes[j]);
+                                poss++;
+                                //printf("%d %s,", codes_check[j], codes[j]);
                             }
                         }
                         break;
+                    }
+                    else if(poss<1)
+                    {
+                        printf("You're cheating. \n");
+                        continue; 
                     }
                     else
                     {
@@ -109,6 +118,12 @@ int main()
                     exit = true;
                     break;
                 }
+            }
+            else if (poss <1)
+            {
+                printf("You are cheating, there's no code that would fit these requierments \n");
+                exit = true;
+                break;
             }
         }
     }
