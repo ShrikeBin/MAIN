@@ -27,9 +27,11 @@ short grade(char pattern[], char try[]) // zwraca red/white w formie liczby r*1+
     {
         for (int j = 0; j < 4; j++)
         {
-            if (((pattern_alt[i]) == (try_alt[j])) && (pattern_alt[i] != '0') && (try_alt[i] != '0'))// zobacz czy sie nie wywala na tych 1000+ dla 11
+            if (((pattern_alt[i]) == (try_alt[j])) && (pattern_alt[i] != '0') && (try_alt[j] != '0')) // zobacz czy sie nie wywala na tych 1000+ dla 11
             {
                 output += 1;
+                pattern_alt[i] = '0';
+                try_alt[j] = '0';
             }
         }
     }
@@ -40,7 +42,7 @@ short grade(char pattern[], char try[]) // zwraca red/white w formie liczby r*1+
 int main()
 {
     char codes[1296][5];
-    char digits[6][1] = {'1', '2', '3', '4', '5', '6'};
+    char digits[6] = "123456";
     int fill = 0;
 
     for (int a1 = 0; a1 < 6; a1++) // wypelnij tabilce kodami
@@ -51,10 +53,10 @@ int main()
             {
                 for (int a4 = 0; a4 < 6; a4++)
                 {
-                    codes[fill][0] = digits[a1][0];
-                    codes[fill][1] = digits[a2][0];
-                    codes[fill][2] = digits[a3][0];
-                    codes[fill][3] = digits[a4][0];
+                    codes[fill][0] = digits[a1];
+                    codes[fill][1] = digits[a2];
+                    codes[fill][2] = digits[a3];
+                    codes[fill][3] = digits[a4];
                     codes[fill][4] = '\0';
                     fill++;
                 }
@@ -84,10 +86,14 @@ int main()
                     {
                         for (int j = 0; j < 1296; j++)
                         {
-                            if (grade(codes[i], codes[j]) != player) // czemu nie wychodzi z for'a xd dla j>=1095 nie działa jakoś xddxdd wtf;
+                            if ((codes_check[j])&&(grade(codes[i], codes[j]) != player))
                             {
-                                printf("%d %d,", codes_check[j], j);
                                 codes_check[j] = false;
+                            }
+
+                            if(codes_check[j])
+                            {
+                                printf("%d %s,", codes_check[j], codes[j]);
                             }
                         }
                         break;
