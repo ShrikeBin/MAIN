@@ -17,13 +17,6 @@ double result(double a, double b, double eps)
     double range = (rngEND - rngBEGIN);
     double point = ((rngEND + rngBEGIN)/2);
 
-
-    if (fun(rngBEGIN) * fun(rngEND) > 0) 
-    {
-        printf("Does not equal to 0 in the interval\n");
-        return NAN;
-    }
-
     while (range >= eps)
     {
 

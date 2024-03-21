@@ -81,8 +81,8 @@ int main()
             {
                 while (true)
                 {
-                    printf("There's %d possible codes left\n", poss);
-                    printf("Try: %s  red/white ", codes[i]);
+                    printf("-(There's %d possible codes left)-\n", poss);
+                    printf(">> Try: %s\n>> red/white ", codes[i]);
                     scanf("\n%d", &player);
                     if ((((player / 10) + (player % 10)) <= 4)&&(player<=40))
                     {
